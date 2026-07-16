@@ -20,3 +20,20 @@ A web-based inventory management application built using **Python, Flask, HTML, 
 ## Purpose
 
 This project demonstrates the fundamentals of inventory management by providing a simple and efficient system for maintaining product records and monitoring stock. It showcases full-stack web development using Flask along with CRUD operations and structured data management.
+
+## How to Run
+
+1. Install the required package:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+2. Run the application:
+   ```bash
+   python app.py
+   ```
+
+3. Open your browser and visit:
+   ```
+   http://127.0.0.1:5000
+   ```
