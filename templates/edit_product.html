@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Product</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="main-layout">
+
+    <div class="sidebar">
+
+        <div class="sidebar-logo">
+            <img src="{{ url_for('static', filename='logo.png') }}">
+            <h2>Apptmyz</h2>
+        </div>
+
+        <a href="/dashboard">Dashboard</a>
+        <a href="/products" class="active">
+            Product Management
+        </a>
+        <a href="/inventory">Inventory Tracking</a>
+        <a href="/alerts">Alerts</a>
+        <a href="/logout">Logout</a>
+
+    </div>
+
+    <div class="content">
+
+        <div class="topbar">
+            <h1>Edit Product</h1>
+        </div>
+
+        <div class="form-card">
+
+            <form method="POST">
+
+                <input
+                    type="text"
+                    name="product_name"
+                    value="{{ product.product_name }}"
+                    required
+                >
+
+                <input
+                    type="number"
+                    name="quantity"
+                    value="{{ product.quantity }}"
+                    required
+                >
+
+                <input
+                    type="text"
+                    name="warehouse"
+                    value="{{ product.warehouse }}"
+                    required
+                >
+
+                <button type="submit">
+                    Update Product
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

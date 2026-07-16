@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Management</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="main-layout">
+
+    <!-- Sidebar -->
+
+    <div class="sidebar">
+
+        <div class="sidebar-logo">
+            <img src="{{ url_for('static', filename='logo.png') }}">
+            <h2>Apptmyz</h2>
+        </div>
+
+        <a href="/dashboard">Dashboard</a>
+        <a href="/products" class="active">
+            Product Management
+        </a>
+        <a href="/inventory">Inventory Tracking</a>
+        <a href="/alerts">Alerts</a>
+        <a href="/logout">Logout</a>
+
+    </div>
+
+    <!-- Content -->
+
+    <div class="content">
+
+        <div class="topbar">
+            <h1>Product Management</h1>
+        </div>
+
+        <!-- Add Product Form -->
+
+        <div class="form-card">
+
+            <h2>Add Product</h2>
+
+            <form action="/add_product" method="POST">
+
+                <input
+                    type="text"
+                    name="product_name"
+                    placeholder="Product Name"
+                    required
+                >
+
+                <input
+                    type="number"
+                    name="quantity"
+                    placeholder="Quantity"
+                    required
+                >
+
+                <input
+                    type="text"
+                    name="warehouse"
+                    placeholder="Warehouse"
+                    required
+                >
+
+                <button type="submit">
+                    Add Product
+                </button>
+
+            </form>
+
+        </div>
+
+        <!-- Product Table -->
+
+        <div class="table-card">
+
+            <h2>Available Products</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Warehouse</th>
+                        <th>Actions</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for product in products %}
+
+                    <tr>
+
+                        <td>{{ product.id }}</td>
+
+                        <td>{{ product.product_name }}</td>
+
+                        <td>{{ product.quantity }}</td>
+
+                        <td>{{ product.warehouse }}</td>
+
+                        <td>
+
+                            <a
+                               href="/edit_product/{{ product.id }}"
+                               class="edit-btn">
+                               Edit
+                            </a>
+
+                            <a
+                               href="/delete_product/{{ product.id }}"
+                               class="delete-btn">
+                               Delete
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

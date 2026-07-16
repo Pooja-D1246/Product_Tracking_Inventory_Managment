@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard - Apptmyz IMS</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="main-layout">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+
+        <div class="sidebar-logo">
+            <img src="{{ url_for('static', filename='logo.png') }}">
+            <h2>Apptmyz</h2>
+        </div>
+
+        <a href="/dashboard" class="active">Dashboard</a>
+        <a href="/products">Product Management</a>
+        <a href="/inventory">Inventory Tracking</a>
+        <a href="/alerts">Alerts</a>
+        <a href="/logout">Logout</a>
+
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+
+        <div class="topbar">
+            <h1>Inventory Dashboard</h1>
+
+            <div class="welcome">
+                Welcome, {{ username }}
+            </div>
+        </div>
+
+        <!-- KPI Cards -->
+
+        <div class="kpi-grid">
+
+            <div class="kpi-card">
+                <h3>Total Products</h3>
+                <p>{{ total_products }}</p>
+            </div>
+
+            <div class="kpi-card">
+                <h3>Total Stock</h3>
+                <p>{{ total_stock }}</p>
+            </div>
+
+            <div class="kpi-card">
+                <h3>Low Stock</h3>
+                <p>{{ low_stock }}</p>
+            </div>
+
+            <div class="kpi-card">
+                <h3>Out of Stock</h3>
+                <p>{{ out_of_stock }}</p>
+            </div>
+
+        </div>
+
+        <!-- Product Cards -->
+
+        <h2 class="section-title">Warehouse Products</h2>
+
+        <div class="product-grid">
+
+            {% for product in products %}
+
+            <div class="product-card">
+
+                <h3>{{ product.product_name }}</h3>
+
+                <p><strong>ID:</strong> {{ product.id }}</p>
+
+                <p>
+                    <strong>Warehouse:</strong>
+                    {{ product.warehouse }}
+                </p>
+
+                <p>
+                    <strong>Available Stock:</strong>
+                    {{ product.quantity }}
+                </p>
+
+                {% if product.quantity == 0 %}
+                    <span class="badge out">
+                        Out of Stock
+                    </span>
+
+                {% elif product.quantity <= 10 %}
+                    <span class="badge low">
+                        Low Stock
+                    </span>
+
+                {% else %}
+                    <span class="badge available">
+                        In Stock
+                    </span>
+
+                {% endif %}
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
