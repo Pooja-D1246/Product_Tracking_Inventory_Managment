@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Alerts - Apptmyz IMS</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="main-layout">
+
+    <!-- Sidebar -->
+
+    <div class="sidebar">
+
+        <div class="sidebar-logo">
+            <img src="{{ url_for('static', filename='logo.png') }}">
+            <h2>Apptmyz</h2>
+        </div>
+
+        <a href="/dashboard">Dashboard</a>
+        <a href="/products">Product Management</a>
+        <a href="/inventory">Inventory Tracking</a>
+        <a href="/alerts" class="active">Alerts</a>
+        <a href="/logout">Logout</a>
+
+    </div>
+
+    <!-- Content -->
+
+    <div class="content">
+
+        <h1>Inventory Alerts</h1>
+
+        <br>
+
+        <table>
+
+            <tr>
+                <th>ID</th>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Warehouse</th>
+                <th>Status</th>
+            </tr>
+
+            {% for product in products %}
+
+            <tr>
+
+                <td>{{ product.id }}</td>
+
+                <td>{{ product.product_name }}</td>
+
+                <td>{{ product.quantity }}</td>
+
+                <td>{{ product.warehouse }}</td>
+
+                <td>
+
+                    {% if product.quantity == 0 %}
+
+                    <span class="badge out">
+                        Out of Stock
+                    </span>
+
+                    {% else %}
+
+                    <span class="badge low">
+                        Low Stock
+                    </span>
+
+                    {% endif %}
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+</div>
+
+</body>
+</html>
