@@ -1,0 +1,4 @@
+#Requirements
+Flask
+
+# SQLite is included with Python, so no installation is required.
